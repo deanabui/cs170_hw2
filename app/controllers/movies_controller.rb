@@ -6,9 +6,11 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
+  #/* March 09 hw2 1.b */
   def index
-    @movies = Movie.all
+    @movies = Movie.order(params[:sort_by])
   end
+  #/* ---------------- */
 
   def new
     # default: render 'new' template
@@ -38,8 +40,8 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-      def movie_params
-        params.require(:movie).permit(:title, :rating, :description, :release_date, :timestamps)
-    end
+  def movie_params
+    params.require(:movie).permit(:title, :rating, :description, :release_date, :timestamps)
+  end
 
 end
